@@ -16,6 +16,15 @@ cd project-name
 ng add @angular/elements
 ```
 
+3. Create and customize your components that you want ot use as web components
+
+- Created alert component
+- Created alert service
+
+* I used [@angular/material](https://material.angular.io/) to create components with [schematics](https://material.angular.io/guide/schematics)
+
+  - navigation
+
 ## Resources I used:
 
 - [Creating Micro-frontends using Web Components (with support for Angular and React)](https://javascript.plainenglish.io/create-micro-frontends-using-web-components-with-support-for-angular-and-react-2d6db18f557a)

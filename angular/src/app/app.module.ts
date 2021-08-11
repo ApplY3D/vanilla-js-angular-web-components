@@ -10,9 +10,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { AlertComponent } from './alert/alert.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
-  declarations: [AppComponent, AlertComponent],
+  declarations: [AppComponent, AlertComponent, NavigationComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
