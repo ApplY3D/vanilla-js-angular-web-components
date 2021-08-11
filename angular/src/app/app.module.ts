@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { AlertComponent } from './alert/alert.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { createCustomElement } from '@angular/elements';
 
 @NgModule({
   declarations: [AppComponent, AlertComponent, NavigationComponent],
@@ -26,6 +27,20 @@ import { NavigationComponent } from './navigation/navigation.component';
   ],
   providers: [],
   // clear bootstrap array before build!
-  bootstrap: [AppComponent],
+  bootstrap: [],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private injector: Injector) {}
+
+  ngDoBootstrap() {
+    const ngAlertComponent = createCustomElement(AlertComponent, {
+      injector: this.injector,
+    });
+    const ngNavigationComponent = createCustomElement(NavigationComponent, {
+      injector: this.injector,
+    });
+
+    customElements.define('ng-alert', ngAlertComponent);
+    customElements.define('ng-navigation', ngNavigationComponent);
+  }
+}

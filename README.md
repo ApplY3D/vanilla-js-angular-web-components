@@ -1,6 +1,6 @@
 ## Angular setup
 
-1. Init angular project with
+### 1. Init angular project with
 
 ```
 ng new project-name
@@ -10,13 +10,7 @@ ng new project-name
 cd project-name
 ```
 
-2. Add [@angular/elements](https://angular.io/guide/elements) package
-
-```
-ng add @angular/elements
-```
-
-3. Create and customize your components that you want ot use as web components
+### 2. Create and customize your components that you want ot use as web components
 
 - Created alert component
 - Created alert service
@@ -42,7 +36,7 @@ ng add @angular/elements
 
   I have created example layout inside `app.component.html`, so to check how it works insure that it is bootstrapped:
 
-  `app.module.ts`
+  `angular/src/app/app.module.ts`
 
   ```ts
   @NgModule({
@@ -51,6 +45,71 @@ ng add @angular/elements
     ...
   })
   ```
+
+### 3. Add [@angular/elements](https://angular.io/guide/elements)
+
+```
+ng add @angular/elements
+```
+
+Configuring:
+
+```ts
+import { createCustomElement } from '@angular/elements';
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [],
+  providers: [],
+  // clear bootstrap array before build!
+  bootstrap: [],
+})
+export class AppModule {
+  constructor(private injector: Injector) {}
+
+  ngDoBootstrap() {
+    // use @angular/elements function to create custom element
+    const customComponent = createCustomElement(AppComponent, {
+      injector: this.injector,
+    });
+
+    // define custom element with browser api
+    customElements.define('ng-custom-component', customComponent);
+  }
+}
+```
+
+### 4. Add [ngx-build-plus](https://github.com/manfredsteyer/ngx-build-plus)
+
+```
+ng add ngx-build-plus
+```
+
+- Add new scripts to your package.json
+
+`package.json`
+
+```json
+"scripts": {
+  /*...*/
+  "build:single-bundle": "ng build --prod --output-hashing none --single-bundle true",
+  "build:package-bundle": "cat dist/angular/{polyfills,main}.js > dist/angular/bundle.js",
+  "build:web-components": "npm run build:single-bundle && npm run build:package-bundle"
+}
+```
+
+Run `build:web-components` script to build project and generate `bundle.js`
+
+### 5. Because I use material, I must cut all links with stylesheet from `index.html` and paste it to styles file
+
+`styles.css`
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.gstatic.com');
+```
 
 ## Resources I used:
 
