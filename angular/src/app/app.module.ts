@@ -25,6 +25,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     MatListModule,
   ],
   providers: [],
+  // clear bootstrap array before build!
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -25,6 +25,33 @@ ng add @angular/elements
 
   - navigation
 
+    navigation component have input and output
+
+  `angular/src/app/navigation/navigation.component.ts`
+
+  ```ts
+  export class NavigationComponent {
+    @Input() sidebarTitle = 'Menu';
+    @Input() toolbarTitle = 'App';
+
+    @Output() linkSelected = new EventEmitter<number>();
+
+    ...
+  }
+  ```
+
+  I have created example layout inside `app.component.html`, so to check how it works insure that it is bootstrapped:
+
+  `app.module.ts`
+
+  ```ts
+  @NgModule({
+    ...
+    bootstrap: [AppComponent],
+    ...
+  })
+  ```
+
 ## Resources I used:
 
 - [Creating Micro-frontends using Web Components (with support for Angular and React)](https://javascript.plainenglish.io/create-micro-frontends-using-web-components-with-support-for-angular-and-react-2d6db18f557a)
