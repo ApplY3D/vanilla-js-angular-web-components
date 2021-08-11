@@ -1,0 +1,9 @@
+<div *ngIf="alert$ | async as alert" class="backdrop" (click)="onClose()">
+  <div class="content" (click)="$event.stopPropagation()">
+    <p>{{ alert }}</p>
+
+    <div class="footer">
+      <button (click)="onClose()" mat-button>Close</button>
+    </div>
+  </div>
+</div>
