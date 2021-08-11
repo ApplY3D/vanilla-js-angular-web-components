@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ADDED CSS BUILD -->
+    <link rel="stylesheet" href="../angular/dist/angular/styles.css" />
+
+    <title>Document</title>
+  </head>
+  <!-- ADDED CLASS mat-typography -->
+  <body class="mat-typography">
+    <!-- ADDED JS BUILD -->
+    <script src="../angular/dist/angular/bundle.js"></script>
+
+    <!-- CREATED OUR CUSTOM ELEMENTS -->
+    <ng-alert></ng-alert>
+    <!-- BIND PROPS IN kebab-case!!! -->
+    <ng-navigation toolbar-title="Vanilla Toolbar"></ng-navigation>
+
+    <!-- ADDED EVENT LISTENER AND BINDED PROS -->
+    <script>
+      const nav = document.querySelector('ng-navigation');
+      nav.addEventListener('linkSelected', (e) =>
+        // alert should be 'linkSelected {link number}'
+        alert(`${e.type} ${e.detail}`)
+      );
+      nav.sidebarTitle = 'Vanilla Sidebar';
+    </script>
+  </body>
+</html>

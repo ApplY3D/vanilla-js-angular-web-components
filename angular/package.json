@@ -7,9 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:single-bundle": "ng build --prod --output-hashing none --single-bundle true",
+    "build:prod:no-hashes": "ng build --prod --output-hashing none --single-bundle true",
     "build:package-bundle": "cat dist/angular/{polyfills,main}.js > dist/angular/bundle.js",
-    "build:web-components": "npm run build:single-bundle && npm run build:package-bundle"
+    "build:web-components": "npm run build:prod:no-hashes && npm run build:package-bundle",
+    "build:web-components:serve": "npm run build:prod:no-hashes && serve -l 5001 dist/angular"
   },
   "private": true,
   "dependencies": {
